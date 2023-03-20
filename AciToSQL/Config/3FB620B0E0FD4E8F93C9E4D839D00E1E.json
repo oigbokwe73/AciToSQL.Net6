@@ -1,0 +1,68 @@
+{
+  "Id": "ConnectToDatabaseToSearch",
+  "LineOfBusinessProcessData": [
+    {
+      "Key": "object",
+      "Type": "Xenhey.BPM.Core.Net6.Processes.ProcessData"
+    }
+  ],
+  "Type": "",
+  "DataFlowProcess": [
+    {
+      "Key": "SearchDatabaseForResults",
+      "Type": "Xenhey.BPM.Core.Net6.Processes.ConnectToDBProcess",
+      "Async": "false",
+      "IsEnable": "true",
+      "DataFlowProcessParameters": [
+        {
+          "Key": "connectodatabase",
+          "Value": "Yes"
+        },
+        {
+          "Key": "SearchTerm",
+          "Value": "search"
+        },
+        {
+          "Key": "connectionstring",
+          "Value": "ConnectionString"
+        },
+        {
+          "Key": "messageformat",
+          "Value": "application/json"
+        }
+      ]
+    },
+		{
+      "Key": "TransformCsvPayload",
+      "Type": "Xenhey.BPM.Core.Net6.Processes.TransformationProcess",
+      "Async": "false",
+      "IsEnable": "true",
+      "DataFlowProcessParameters": [
+        {
+          "Key": "messageformatin",
+          "Value": "application/json"
+        },
+        {
+          "Key": "StorageAccount",
+          "Value": "AzureWebJobsStorage"
+        },
+        {
+          "Key": "FolderName",
+          "Value": "config"
+        },
+        {
+          "Key": "FileName",
+          "Value": "FileTransformData.xsl"
+        },
+        {
+          "Key": "TransformPayload",
+          "Value": "yes"
+        },
+        {
+          "Key": "messageformatout",
+          "Value": "application/json"
+        }
+      ]
+    }
+  ]
+}

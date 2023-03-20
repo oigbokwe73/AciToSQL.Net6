@@ -1,0 +1,48 @@
+{
+  "Id": "SendDataToEventHub",
+  "LineOfBusinessProcessData": [
+    {
+      "Key": "object",
+      "Type": "Xenhey.BPM.Core.Net6.Processes.ProcessData"
+    }
+  ],
+  "Type": "",
+  "DataFlowProcess": [
+    {
+      "Key": "ReadJsonFromStream",
+      "Type": "Xenhey.BPM.Core.Net6.Processes.MessageBuilderProcess",
+      "Async": "false",
+      "IsEnable": "false",
+      "DataFlowProcessParameters": [
+        {
+          "Key": "ReadJsonAsStream",
+          "Value": "yes"
+        },
+        {
+          "Key": "messageformat",
+          "Value": "application/json"
+        }
+      ]
+    },
+    {
+      "Key": "AddEventHubProcess",
+      "Type": "Xenhey.BPM.Core.Net6.Processes.EventHubProcess",
+      "Async": "false",
+      "IsEnable": "true",
+      "DataFlowProcessParameters": [
+        {
+          "Key": "SendCSVRecord",
+          "Value": "yes"
+        },
+        {
+          "Key": "EventHubConnectionString",
+          "Value": "EventHubConnectionString"
+        },
+        {
+          "Key": "EventHubName",
+          "Value": "collegeinfo"
+        }
+      ]
+    }
+  ]
+}
